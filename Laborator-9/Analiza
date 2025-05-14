@@ -1,0 +1,9 @@
+a. Outputul este incoerent: text inventat ("voă sis", "Želihai", "lupli, înnis"), combinatie de limba eng si latina sau ceva nordic,mesaje complet off-topic;
+b. Nu e antrenat pe romana deci nu da nimic bine, pe engelza incepe sa dea lucruri tip proza
+c1. llm general mult mia slab nu produce sens, departe de poezie, pe parte de engelza itit ofera context dar slab i adesea vag
+c2. GPT-2 ofera rezultate gramatical corecte, dar rar poetice, si prob mare sa interfere si cu non-sens, modelul poezie ofera text dar nu ceea ce ne trebuie.
+c3. gpt-2 nu stie romana incerca o match cu ce stie ca o decodificare dar obtine semne pictate de nordici sau egipt, in cel mai ok caz genereaza ceva haotic
+c4. apare text fără sens sau dintr-un alt context
+c5. fine-tuning pe pastel dam poezii romensti spre exmeplu eminescu alecansadri blaga, putem folossi si
+models--readerbench--RoGPT2-medium dar rezultatele sunt la fel de proaste
+sau un prmpt mai lung in care speficam clar linuta cu linuta ceea ce dorim

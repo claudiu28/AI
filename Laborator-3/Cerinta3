@@ -1,0 +1,9 @@
+Strategii de Optimizare pentru Recunoașterea Textului
+
+O prima etapa poate fi ajustarea contrastului pentru evidențierea textului si eliminarea zgomotului vizual care poate compromite acuratețea.
+Înclinarea textului și calibrarea rezoluției imaginii la parametrii optimi pentru algoritmii OCR pot contribuii la o mai buna recunoastere.
+Tratatrea diacriticelor pt limba romana, echivalarea lor cu s,t,a se poate obtine un rezulat mai bun.
+Postprocesarea rezultatelor pe baza unor dicționare specializate, analiza contextuală pentru dezambiguizarea cuvintelor
+și aplicarea modelelor statistice de limbă contribuie la rafinarea output-ului.
+Pentru handwritten, se recomandă tehnici dedicate precum algoritmi avansați de segmentare pentru separarea precisă a caracterelor,
+sisteme adaptive pentru recunoașterea stilurilor individuale de scriere și utilizarea corpusurilor lingvistice specializate.

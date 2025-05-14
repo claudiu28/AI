@@ -1,0 +1,121 @@
+#3.Se da un fisier care contine un text (format din mai multe propozitii) in limba romana - a se vedea fisierul ”data/texts.txt”. Se cere sa se determine si sa se vizualizeze:
+
+# a. numarul de propozitii din text;
+# b. numarul de cuvinte din text
+# c. numarul de cuvinte diferite din text
+# d. cel mai scurt si cel mai lung cuvant (cuvinte)
+# e. textul fara diacritice
+# f. sinonimele celui mai lung cuvant din text
+import re
+from rowordnet import *
+
+
+def diagram(data):
+    plt.figure(figsize=(10, 6))
+
+    indices = list(range(len(data)))
+
+    plt.plot(indices, data, marker='o', linestyle='-', color='green', linewidth=2, markersize=16)
+
+    for i, value in enumerate(data):
+        plt.text(i, value + 5, str(value), ha='center')
+
+    plt.title('Diagrama valorilor', fontsize=16)
+    plt.xlabel('Index', fontsize=12)
+    plt.ylabel('Valoare', fontsize=12)
+
+    plt.grid(True, linestyle='--', alpha=0.7)
+
+    plt.tight_layout()
+
+    plt.show()
+
+
+def load(file_path):
+    with open(file_path, 'r', encoding="utf-8") as f:
+        text = f.read()
+    return text
+
+
+def point_a(text):
+    sentences = re.split("[.?!]+", text)
+    sentences = [s.strip() for s in sentences if s.strip()]
+    return len(sentences)
+
+
+def point_b(text):
+    words = re.split("[.?!\s\n-]+", text)
+    return len(words)
+
+
+def point_c(text):
+    words = re.split(r"[.,?!\s„”;:()–]+", text)
+    words = [word.lower() for word in words if word]
+    return len(set(words))
+
+
+def point_d(text):
+    words = re.split(r"[.,?!\s„”;:()–]+", text)
+    words = [word.lower() for word in words if word]
+    maxim = max(words, key=lambda x: len(x)).capitalize()
+    minim = min(words, key=lambda x: len(x))
+
+    lista_maxim = [word for word in words if len(word) == len(maxim)]
+    lista_minim = list(set([word for word in words if len(word) == len(minim)]))
+    return lista_maxim, lista_minim
+
+
+def point_e(text):
+    letters = {
+        "Ț": "T",
+        "Ș": "S",
+        "Ă": "A",
+        "Î": "I",
+        "Â": "A",
+        "ă": "a",
+        "â": "a",
+        "ț": "t",
+        "î": "i",
+        "ș": "s"
+    }
+    for key, value in letters.items():
+        text = text.replace(key, value)
+    return text
+
+
+def point_f(word):
+    wn = RoWordNet()
+    synset_ids = wn.synsets(literal=word)
+    sysnonim = []
+    for synset_id in synset_ids:
+        s = wn.synset(synset_id)
+        sysnonim.append(s)
+    return sysnonim
+
+
+filepath = "data/texts.txt"
+txt = load(filepath)
+print(point_a(txt))
+print("__________________________________________________")
+print(point_b(txt))
+print("__________________________________________________")
+print(point_c(txt))
+print("__________________________________________________")
+print(point_d(txt))
+print("__________________________________________________")
+print(point_e(txt))
+print("__________________________________________________")
+w = point_d(txt)
+#pt cuvant maxim 
+cuv = w[0][0]
+print("Format cu full i:", point_f(cuv))
+print("__________________________________________________")
+print(point_f("confirm"))
+print("__________________________________________________")
+print(point_f("frumos"))
+print("__________________________________________________")
+a = point_a(txt)
+b = point_b(txt)
+c = point_c(txt)
+lista = [a, b, c]
+diagram(lista)
